@@ -150,7 +150,7 @@ messages_binary (Db, Messages) ->
 % Util %
 
 tcp_connect ({Hostname, Port}, TimeoutMS) ->
-	case gen_tcp:connect (Hostname, Port, [binary, {active, false}, {packet, 0}], TimeoutMS) of
+	case gen_tcp:connect (Hostname, Port, [binary, {reuseaddr, true}, {active, false}, {packet, 0}], TimeoutMS) of
 		{ok, Socket} -> Socket;
 		{error, Reason} -> throw (Reason)
 	end.
